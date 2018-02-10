@@ -1,5 +1,24 @@
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="content">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a [routerLink]="['/namegender']" class="nav-link">Gender</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['/number']" class="nav-link">Num</a>
+            </li>
+        </ul>
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">Welcome to Angular's Lab!</h1>
+                <p>In this site will found some interest app</p>
+            </div>
+        </div>
+    </div>
+    
+    <router-outlet></router-outlet>
+</div>
 
 
 

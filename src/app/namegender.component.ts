@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -10,16 +10,22 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./namegender.component.css']
 })
 export class NameGenderComponent {
-  title = 'Angular Lab';
+  title = 'Predicts your Gender';
   result = null;
   constructor(
-    public http: HttpClient
+    private http: HttpClient
   ) {
      this.getConfigResponse('richard');
   }
 
   getConfigResponse(param: String) {
     const name = param;
-    this.result = this.http.get('https://api.genderize.io/?name=' + name);
+    if (name.length === 0) {
+      this.result.err = true;
+      return;
+    }
+    this.http.get('https://api.genderize.io/?name=' + name).subscribe((res) => {
+      this.result = res;
+    });
   }
 }

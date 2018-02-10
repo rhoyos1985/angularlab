@@ -1,10 +1,46 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
-      </h1>
+<div class="jumbotron content">
+  <h1 class="align-center">
+    {{ title }}!
+  </h1>
+  <div class="row justify-content-md-center margin-bottom-r">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Into your name:" #newGender>
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" (click)="getConfigResponse(newGender.value)">Go!</button>
+        </span>
+      </div>
+    </div>
   </div>
-  <h2>Into your name: </h2>
-  <input #newGender>
-  <button (click)="getConfigResponse(newGender.value)">Click me!</button>
-  <pre>{{ result | async | json }}</pre>
+  <div class="row justify-content-md-center">
+    <div *ngIf="result && result.err; then err; else cardName"></div>
+    <ng-template #cardName>
+      <div class="card" style="width: 20rem;">
+        <div class="card-block align-center">
+          <h4 class="card-title">{{ result.name }}</h4>
+          <div class="card-text">
+            <dl class="row">         
+              <dt class="col-sm-3">Gender</dt>
+              <dd class="col-sm-9">{{ result.gender }}</dd>
+            
+              <dt class="col-sm-3">Probability</dt>
+              <dd class="col-sm-9">{{ result.probability }}</dd>
+            
+              <dt class="col-sm-3 ">Count</dt>
+              <dd class="col-sm-9">{{ result.count }}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #err>
+      <div class="alert alert-danger" role="alert">
+        <strong>Oh snap!</strong> Change a few things up and try submitting again.
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+  
+  
