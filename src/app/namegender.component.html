@@ -14,21 +14,21 @@
     </div>
   </div>
   <div class="row justify-content-md-center">
-    <div *ngIf="result && result.err; then err; else cardName"></div>
+    <div *ngIf="result && result.err; then err else cardName"></div>
     <ng-template #cardName>
       <div class="card" style="width: 20rem;">
         <div class="card-block align-center">
-          <h4 class="card-title">{{ result.name }}</h4>
+          <h4 class="card-title">{{ result?.name }}</h4>
           <div class="card-text">
             <dl class="row">         
               <dt class="col-sm-3">Gender</dt>
-              <dd class="col-sm-9">{{ result.gender }}</dd>
+              <dd class="col-sm-9">{{ result?.gender }}</dd>
             
               <dt class="col-sm-3">Probability</dt>
-              <dd class="col-sm-9">{{ result.probability }}</dd>
+              <dd class="col-sm-9">{{ result?.probability }}</dd>
             
               <dt class="col-sm-3 ">Count</dt>
-              <dd class="col-sm-9">{{ result.count }}</dd>
+              <dd class="col-sm-9">{{ result?.count }}</dd>
             </dl>
           </div>
         </div>
